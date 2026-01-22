@@ -1,53 +1,73 @@
 // DOM Ready
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize Lottie animation (optional - remove if no animation)
-  const animationContainer = document.getElementById('ai-animation');
-  if (animationContainer) {
-    // You can load a Lottie animation here if you have one
-    // For now, we'll create a placeholder
-    console.log("Lottie animation container found");
-  }
-  
+document.addEventListener('DOMContentLoaded', function () {
+
   // Navbar scroll effect
   const navbar = document.querySelector('.navbar');
-  window.addEventListener('scroll', function() {
+  window.addEventListener('scroll', function () {
     if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
     }
   });
-  
+
+  // Theme Toggle Logic
+  const themeToggle = document.querySelector('.theme-toggle');
+  const body = document.body;
+  const icon = themeToggle ? themeToggle.querySelector('i') : null;
+
+  // Check saved preference
+  if (localStorage.getItem('theme') === 'light') {
+    body.classList.add('light-mode');
+    if (icon) icon.classList.replace('fa-moon', 'fa-sun');
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      const isLight = body.classList.contains('light-mode');
+
+      // Update icon
+      if (icon) {
+        if (isLight) {
+          icon.classList.replace('fa-moon', 'fa-sun');
+        } else {
+          icon.classList.replace('fa-sun', 'fa-moon');
+        }
+      }
+
+      // Save preference
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+  }
+
   // Mobile menu toggle
   const menuToggle = document.querySelector('.menu-toggle');
   const navMenu = document.querySelector('.nav-menu');
-  
+
   if (menuToggle) {
-    menuToggle.addEventListener('click', function() {
+    menuToggle.addEventListener('click', function () {
       navMenu.classList.toggle('active');
-      menuToggle.innerHTML = navMenu.classList.contains('active') 
-        ? '<i class="fas fa-times"></i>' 
+      menuToggle.innerHTML = navMenu.classList.contains('active')
+        ? '<i class="fas fa-times"></i>'
         : '<i class="fas fa-bars"></i>';
     });
   }
-  
+
   // Close mobile menu when clicking a link
-  const navLinks = document.querySelectorAll('.nav-menu a');
-  navLinks.forEach(link => {
-    link.addEventListener('click', function() {
+  document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', () => {
       navMenu.classList.remove('active');
-      menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+      if (menuToggle) menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
     });
   });
-  
-  // Smooth scrolling for anchor links
+
+  // Smooth scrolling
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
       e.preventDefault();
-      
       const targetId = this.getAttribute('href');
       if (targetId === '#') return;
-      
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         window.scrollTo({
@@ -57,111 +77,30 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-  
-  // Contact form submission
-  const contactForm = document.getElementById('contactForm');
+
+  // Contact Form Handling with EmailJS
+  const contactForm = document.getElementById('contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      
-      // Get form values
-      const formData = new FormData(this);
-      const name = this.querySelector('input[type="text"]').value;
-      const email = this.querySelector('input[type="email"]').value;
-      const subject = this.querySelectorAll('input[type="text"]')[1].value;
-      const message = this.querySelector('textarea').value;
-      
-      // Here you would typically send the data to a server
-      // For now, we'll just show a success message
-      const submitBtn = this.querySelector('button[type="submit"]');
-      const originalText = submitBtn.innerHTML;
-      
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-      submitBtn.disabled = true;
-      
-      // Simulate API call
-      setTimeout(() => {
-        alert(`Thank you, ${name}! Your message has been sent successfully. I'll get back to you soon at ${email}.`);
-        contactForm.reset();
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-      }, 1500);
+
+      // Netlify Forms handles submission via HTML attributes
+      // No JavaScript required for basic submission
     });
   }
-  
-  // Skill bars animation on scroll
-  const skillBars = document.querySelectorAll('.skill-progress');
-  const skillsSection = document.getElementById('skills');
-  
-  const animateSkillBars = () => {
-    skillBars.forEach(bar => {
-      const width = bar.style.width;
-      bar.style.width = '0';
-      
-      setTimeout(() => {
-        bar.style.width = width;
-      }, 300);
-    });
-  };
-  
-  // Check if skills section is in viewport
-  const observerOptions = {
-    threshold: 0.3
-  };
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateSkillBars();
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-  
-  if (skillsSection) {
-    observer.observe(skillsSection);
-  }
-  
-  // Add hover effect to project cards
-  const projectCards = document.querySelectorAll('.project-card');
-  projectCards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-      const image = this.querySelector('.project-image img');
-      if (image) {
-        image.style.transform = 'scale(1.1)';
-      }
-    });
-    
-    card.addEventListener('mouseleave', function() {
-      const image = this.querySelector('.project-image img');
-      if (image) {
-        image.style.transform = 'scale(1)';
-      }
+
+  // Optional: Add hover 3D effect to glass cards (Tilt)
+  const cards = document.querySelectorAll('.glass-card');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      card.style.setProperty('--x', `${x}px`);
+      card.style.setProperty('--y', `${y}px`);
     });
   });
-  
-  // Add typing effect to hero title (optional)
-  const heroTitle = document.querySelector('.hero-title');
-  if (heroTitle) {
-    const text = heroTitle.textContent;
-    heroTitle.textContent = '';
-    
-    let i = 0;
-    const typeWriter = () => {
-      if (i < text.length) {
-        heroTitle.textContent += text.charAt(i);
-        i++;
-        setTimeout(typeWriter, 50);
-      }
-    };
-    
-    // Start typing effect after a delay
-    setTimeout(typeWriter, 500);
-  }
-  
-  // Welcome message
-  setTimeout(() => {
-    console.log("%c👋 Welcome to Gajaananth Nadan's Portfolio!", "color: #64ffda; font-size: 16px; font-weight: bold;");
-    console.log("%cThis portfolio showcases innovative, disaster-resilient software solutions.", "color: #8892b0;");
-  }, 1000);
+
+  console.log("%c✨ System Online: Gajaananth Portfolio v2.0", "color: #00f2ff; font-weight: bold; font-size: 14px;");
 });
