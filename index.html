@@ -514,19 +514,20 @@
 
         <div class="contact-form glass-card">
           <h3>Send Message</h3>
-          <form id="contact-form" name="contact" method="POST" data-netlify="true" action="success.html">
+          <form id="contact-form" name="contact" method="POST" data-netlify="true" action="/success.html"
+            netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="contact" />
-            <div class="form-group" style="margin-bottom: 20px;">
-              <input type="text" name="user_name" placeholder="Your Name" required
-                style="width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 8px;">
+            <div style="display: none;">
+              <input name="bot-field" />
             </div>
             <div class="form-group" style="margin-bottom: 20px;">
-              <input type="email" name="user_email" placeholder="Your Email" required
-                style="width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 8px;">
+              <input type="text" name="user_name" class="form-input" placeholder="Your Name" required>
             </div>
             <div class="form-group" style="margin-bottom: 20px;">
-              <textarea name="message" placeholder="Your Message" rows="5" required
-                style="width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 8px;"></textarea>
+              <input type="email" name="user_email" class="form-input" placeholder="Your Email" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 20px;">
+              <textarea name="message" class="form-input" placeholder="Your Message" rows="5" required></textarea>
             </div>
             <button type="submit" class="metal-btn" style="width: 100%; justify-content: center;">
               Send Message <i class="fas fa-paper-plane" style="margin-left: 10px;"></i>
