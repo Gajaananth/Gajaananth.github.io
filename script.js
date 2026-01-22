@@ -78,16 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Contact Form Handling with EmailJS
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
-      e.preventDefault();
 
-      // Netlify Forms handles submission via HTML attributes
-      // No JavaScript required for basic submission
-    });
-  }
 
   // Optional: Add hover 3D effect to glass cards (Tilt)
   const cards = document.querySelectorAll('.glass-card');
