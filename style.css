@@ -434,6 +434,47 @@ body.light-mode .theme-toggle i {
   animation-delay: 5s;
 }
 
+/* ===== SUCCESS PAGE ===== */
+.success-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.success-card {
+  text-align: center;
+  padding: 50px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.success-card .icon-circle {
+  width: 80px;
+  height: 80px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 30px;
+  font-size: 40px;
+  color: var(--primary-color);
+  box-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+}
+
+.success-card h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.success-card p {
+  color: var(--text-color-light);
+  margin-bottom: 40px;
+  font-size: 1.1rem;
+}
+
 /* ===== NAVBAR ===== */
 .navbar {
   position: fixed;

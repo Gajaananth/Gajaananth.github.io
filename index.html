@@ -514,7 +514,8 @@
 
         <div class="contact-form glass-card">
           <h3>Send Message</h3>
-          <form id="contact-form" name="contact" method="POST" data-netlify="true">
+          <form id="contact-form" name="contact" method="POST" data-netlify="true" action="success.html">
+            <input type="hidden" name="form-name" value="contact" />
             <div class="form-group" style="margin-bottom: 20px;">
               <input type="text" name="user_name" placeholder="Your Name" required
                 style="width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 8px;">
