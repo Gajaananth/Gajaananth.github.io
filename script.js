@@ -93,5 +93,34 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // Form Submission Logic
+  const contactForm = document.querySelector('#contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(contactForm);
+
+      // Submit form via fetch
+      fetch('/', {
+        method: 'POST',
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString()
+      })
+        .then((response) => {
+          if (response.ok) {
+            // Redirect to success page on successful submission
+            window.location.href = "success.html";
+          } else {
+            throw new Error('Form submission failed');
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          alert('Thank you for trying to contact me. There was a temporary issue sending the form. Please email me directly at gajaananthn@gmail.com');
+        });
+    });
+  }
+
   console.log("%c✨ System Online: Gajaananth Portfolio v2.0", "color: #00f2ff; font-weight: bold; font-size: 14px;");
 });
