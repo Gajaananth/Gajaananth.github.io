@@ -1343,12 +1343,29 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Tablet & Smaller Desktops */
+/* Prevent horizontal scroll on mobile */
+body,
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Tablet & Smaller Desktops (Max 992px) */
 @media (max-width: 992px) {
+  .section {
+    padding: 60px 0;
+    /* Reduced padding */
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+
   .hero-content {
     grid-template-columns: 1fr;
     text-align: center;
     gap: 40px;
+    padding-top: 20px;
   }
 
   .hero-text {
@@ -1362,14 +1379,21 @@ html {
 
   .hero-image {
     order: -1;
-    /* Image on top for mobile */
-    margin-bottom: 50px;
-    /* Increased from 20px */
+    margin-bottom: 30px;
+  }
+
+  .image-wrapper {
+    width: 250px;
+    height: 250px;
   }
 
   .about-content {
     grid-template-columns: 1fr;
     text-align: center;
+  }
+
+  .about-image {
+    height: 300px;
   }
 
   .about-details {
@@ -1382,6 +1406,7 @@ html {
 
   .contact-info {
     text-align: center;
+    padding: 30px 20px;
   }
 
   .contact-details {
@@ -1392,20 +1417,46 @@ html {
     justify-content: center;
   }
 
-  .projects-grid,
+  /* Force 2 columns on tablet, but ensure they don't overflow */
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
   .skills-container {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* Fix Timeline alignment */
+  .timeline {
+    padding: 0 10px;
+  }
 }
 
-/* Mobile Devices */
+/* Mobile Devices (Max 768px) */
 @media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+    /* Tighter container padding */
+  }
 
-  /* Mobile Navigation */
+  .section {
+    padding: 50px 0;
+  }
+
+  .section-header {
+    margin-bottom: 50px;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+  }
+
+  /* Navigation Mobile Logic */
   .menu-toggle {
     display: block;
     z-index: 1001;
-    /* Above everything */
+    /* Above overlay */
   }
 
   .nav-menu {
@@ -1413,28 +1464,26 @@ html {
     top: 0;
     left: 0;
     width: 100%;
-    /* Full Width */
     height: 100vh;
+    /* Fallback */
+    height: 100dvh;
+    /* Modern mobile viewport height */
     background: rgba(5, 10, 20, 0.98);
-    /* Default Dark */
     backdrop-filter: blur(20px);
     flex-direction: column;
     justify-content: center;
     align-items: center;
     transform: translateY(-100%);
-    /* Start hidden above */
     transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
     z-index: 1000;
   }
 
   .nav-menu.active {
     transform: translateY(0);
-    /* Slide in */
-    right: 0;
   }
 
   .nav-menu li {
-    margin: 20px 0;
+    margin: 15px 0;
     opacity: 0;
     transform: translateY(-20px);
     transition: all 0.3s ease;
@@ -1445,6 +1494,7 @@ html {
     transform: translateY(0);
   }
 
+  /* Stagger animations for menu items */
   .nav-menu.active li:nth-child(1) {
     transition-delay: 0.1s;
   }
@@ -1470,84 +1520,108 @@ html {
     font-weight: 700;
   }
 
-  /* Mobile Light Mode Override */
+  /* Light Theme Mobile Nav */
   body.light-mode .nav-menu {
     background: rgba(255, 255, 255, 0.98);
-    /* Light background */
   }
 
-  body.light-mode .nav-menu a {
-    color: var(--text-color);
+  /* Switch grid to 1 column for standard mobile */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
 
-  /* Typography Adjustments */
+  /* Skills stay 2 cols for until smaller */
+  .skills-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
   .hero-title {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
   }
 
-  /* Hero Refinements */
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  /* Fix stats wrapping */
   .hero-stats {
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
   }
 
-  .stat {
-    min-width: 120px;
-    padding: 15px;
-  }
-
   .scroll-indicator {
     display: none;
-    /* Hide on mobile to prevent overlap */
   }
 }
 
-/* Small Mobile */
+/* Small Mobile (Max 576px) */
 @media (max-width: 576px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+
   .hero-title {
-    font-size: 2.2rem;
+    font-size: 2rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
   }
 
   .hero-buttons {
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     width: 100%;
     align-items: center;
   }
 
-  /* Robust Button Styles */
   .metal-btn,
   .btn-secondary {
     width: 100%;
-    min-height: 55px;
-    /* Prevent collapse */
+    max-width: 300px;
+    /* Don't get ridiculously wide on landscape */
+    min-height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 15px 20px;
-    box-sizing: border-box;
-  }
-
-  .projects-grid,
-  .skills-container {
-    grid-template-columns: 1fr;
+    padding: 12px 20px;
   }
 
   .image-wrapper {
-    /* Removed fixed 250px overrides to allow base style 'min(300px, 70vw)' to work fluidly */
-    margin: 0 auto 30px;
-    /* Ensure centered */
+    width: 200px;
+    height: 200px;
   }
 
+  /* Force 1 column everywhere */
+  .projects-grid,
+  .skills-container,
   .about-details {
     grid-template-columns: 1fr;
   }
 
-  body {
-    overflow-x: hidden;
+  .glass-card {
+    padding: 1.5rem;
+    /* Reduce padding inside cards */
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    justify-content: center;
   }
 }
 
-/ *   = = = = =   N A V B A R   = = = = =   * / 
+/* Fix for large screens to ensure consistent max-width behavior */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
