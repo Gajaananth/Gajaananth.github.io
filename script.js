@@ -101,27 +101,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
+      console.log('Form submission started...');
 
       const btn = contactForm.querySelector('button[type="submit"]');
       const originalText = btn.innerHTML;
       btn.innerHTML = 'Sending...';
 
       // 1. Send Admin Notification (To You) - template_7ax787b
+      console.log('Sending admin notification...');
       emailjs.sendForm('service_c8o0zus', 'template_7ax787b', contactForm)
-        .then(() => {
+        .then((result) => {
+          console.log('Admin notification sent:', result.text);
           // 2. Send Auto-Reply (To Visitor) - template_1t69z8h
-          // We use .send() here to reuse the form data explicitly if needed, or just sendForm again
-          emailjs.sendForm('service_c8o0zus', 'template_1t69z8h', contactForm);
+          console.log('Sending auto-reply...');
+          return emailjs.sendForm('service_c8o0zus', 'template_1t69z8h', contactForm);
         })
-        .then(() => {
-          // Success after both (or mostly after first)
+        .then((result) => {
+          console.log('Auto-reply sent:', result.text);
+          // Success after both
           btn.innerHTML = 'Sent! <i class="fas fa-check"></i>';
+          alert('Message sent successfully! Please check your email inbox.');
           window.location.href = "success.html";
         })
         .catch((error) => {
           btn.innerHTML = originalText;
           console.error('EmailJS Error:', error);
-          alert('Failed to send message. Did you add the Public Key to script.js? Error: ' + JSON.stringify(error));
+          alert('Failed to send message. details: ' + JSON.stringify(error));
         });
     });
   }
