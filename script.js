@@ -93,31 +93,35 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Form Submission Logic
+  // Form Submission Logic (EmailJS)
   const contactForm = document.querySelector('#contact-form');
   if (contactForm) {
+    // Initialize EmailJS
+    emailjs.init("4iHZXwc5CwaA4rhy7");
+
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const formData = new FormData(contactForm);
+      const btn = contactForm.querySelector('button[type="submit"]');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = 'Sending...';
 
-      // Submit form via fetch
-      fetch('/', {
-        method: 'POST',
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString()
-      })
-        .then((response) => {
-          if (response.ok) {
-            // Redirect to success page on successful submission
-            window.location.href = "success.html";
-          } else {
-            throw new Error('Form submission failed');
-          }
+      // 1. Send Admin Notification (To You) - template_7ax787b
+      emailjs.sendForm('service_c8o0zus', 'template_7ax787b', contactForm)
+        .then(() => {
+          // 2. Send Auto-Reply (To Visitor) - template_1t69z8h
+          // We use .send() here to reuse the form data explicitly if needed, or just sendForm again
+          emailjs.sendForm('service_c8o0zus', 'template_1t69z8h', contactForm);
+        })
+        .then(() => {
+          // Success after both (or mostly after first)
+          btn.innerHTML = 'Sent! <i class="fas fa-check"></i>';
+          window.location.href = "success.html";
         })
         .catch((error) => {
-          console.error('Error:', error);
-          alert('Thank you for trying to contact me. There was a temporary issue sending the form. Please email me directly at gajaananthn@gmail.com');
+          btn.innerHTML = originalText;
+          console.error('EmailJS Error:', error);
+          alert('Failed to send message. Did you add the Public Key to script.js? Error: ' + JSON.stringify(error));
         });
     });
   }

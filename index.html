@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="icon" href="assets/profile.jpeg" type="image/jpeg">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
 
 
 </head>
@@ -516,18 +518,12 @@
 
         <div class="contact-form glass-card">
           <h3>Send Message</h3>
-          <form id="contact-form" name="contact" method="POST" data-netlify="true" action="/success.html"
-            netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="contact" />
-            <input type="hidden" name="subject" value="New Portfolio Inquiry from Gajaananth.netlify.app" />
-            <div style="display: none;">
-              <input name="bot-field" />
+          <form id="contact-form">
+            <div class="form-group" style="margin-bottom: 20px;">
+              <input type="text" name="name" class="form-input" placeholder="Your Name" required>
             </div>
             <div class="form-group" style="margin-bottom: 20px;">
-              <input type="text" name="user_name" class="form-input" placeholder="Your Name" required>
-            </div>
-            <div class="form-group" style="margin-bottom: 20px;">
-              <input type="email" name="user_email" class="form-input" placeholder="Your Email" required>
+              <input type="email" name="email" class="form-input" placeholder="Your Email" required>
             </div>
             <div class="form-group" style="margin-bottom: 20px;">
               <textarea name="message" class="form-input" placeholder="Your Message" rows="5" required></textarea>
