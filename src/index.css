@@ -317,6 +317,8 @@ body.cursor-hover .cursor-ring { width: 50px; height: 50px; margin: -25px 0 0 -2
 .skill-tab li { font-size: 0.78rem; color: var(--muted); background: rgba(255,255,255,0.04); padding: 4px 10px; border-radius: 100px; }
 .skills-3d-panel { height: 420px; border-radius: 24px; overflow: hidden; }
 @media (max-width: 900px) { .skills-layout { grid-template-columns: 1fr; } .skills-3d-panel { height: 300px; } }
+@media (max-width: 640px) { .skills-3d-panel { height: 360px; } }
+@media (max-width: 480px) { .skills-3d-panel { height: 280px; } }
 
 /* ---------- Contact ---------- */
 .contact-panel { padding: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 44px; }
