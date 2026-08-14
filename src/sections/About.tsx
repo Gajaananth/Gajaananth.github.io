@@ -3,10 +3,8 @@ import { Canvas } from "@react-three/fiber";
 import RevealOnScroll from "../ui/RevealOnScroll";
 import GlassPanel from "../ui/GlassPanel";
 import TechOrbit from "../components/3d/TechOrbit";
-import { useIsMobile } from "../hooks/useMediaQuery";
 
 export default function About() {
-  const isMobile = useIsMobile();
   return (
     <section id="about" className="section">
       <div className="container">
@@ -43,18 +41,16 @@ export default function About() {
             </div>
           </RevealOnScroll>
 
-          {!isMobile && (
-            <RevealOnScroll delay={120}>
-              <GlassPanel className="about-3d-panel" tilt={false}>
-                <Canvas camera={{ position: [0, 0, 6], fov: 45 }} dpr={[1, 1]} gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}>
-                  <Suspense fallback={null}>
-                    <ambientLight intensity={0.6} />
-                    <TechOrbit />
-                  </Suspense>
-                </Canvas>
-              </GlassPanel>
-            </RevealOnScroll>
-          )}
+          <RevealOnScroll delay={120}>
+            <GlassPanel className="about-3d-panel" tilt={false}>
+              <Canvas camera={{ position: [0, 0, 6], fov: 45 }} dpr={[1, 1]} gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}>
+                <Suspense fallback={null}>
+                  <ambientLight intensity={0.6} />
+                  <TechOrbit />
+                </Suspense>
+              </Canvas>
+            </GlassPanel>
+          </RevealOnScroll>
         </div>
       </div>
     </section>
