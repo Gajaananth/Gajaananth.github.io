@@ -77,9 +77,26 @@ ul { list-style: none; }
   color: #060814;
   box-shadow: 0 10px 30px rgba(95, 212, 255, 0.25);
 }
-.primary-button:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(95, 212, 255, 0.35); }
+@media (hover: hover) {
+  .primary-button:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(95, 212, 255, 0.35); }
+}
+.primary-button:active,
+.primary-button:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(95, 212, 255, 0.35);
+  outline: none;
+}
 .secondary-button { border: 1px solid var(--panel-border); background: rgba(255, 255, 255, 0.03); }
-.secondary-button:hover { transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.22); background: rgba(255, 255, 255, 0.06); }
+@media (hover: hover) {
+  .secondary-button:hover { transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.22); background: rgba(255, 255, 255, 0.06); }
+}
+.secondary-button:active,
+.secondary-button:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  outline: none;
+}
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 ::selection { background: var(--accent-violet); color: #05070d; }
 @media (max-width: 900px) { .section { padding: 90px 0; } }
@@ -589,9 +606,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   /* Simplify button transitions */
   .primary-button, .secondary-button { transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; }
   
-  /* Reduce transform effects on interactive elements */
-  .primary-button:hover, .secondary-button:hover { transform: none; }
-  
   /* Optimize tilt cards for mobile */
   .tilt-card { perspective: none; }
   
@@ -602,9 +616,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @media (max-width: 480px) {
   /* Even more aggressive optimizations for very small screens */
   .reveal-on-scroll { opacity: 1; transform: none; transition: none; }
-  
-  /* Disable transform animations completely */
-  .primary-button:hover, .secondary-button:hover, .footer-social-link:hover { transform: none !important; }
   
   /* Simplify all transitions */
   * { transition-duration: 0.15s !important; }
