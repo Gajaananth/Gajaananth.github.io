@@ -97,9 +97,9 @@ export default function Contact() {
               <MagneticButton type="submit" variant="primary">
                 {status === "sending" ? "Sending..." : status === "sent" || status === "partial" ? "Sent!" : "Send message"}
               </MagneticButton>
-              {status === "sent" && <p role="status" style={{ color: "var(--accent)", fontSize: "0.85rem" }}>Message sent — check your inbox.</p>}
-              {status === "partial" && <p role="status" style={{ color: "var(--accent)", fontSize: "0.85rem" }}>Message sent — I'll get back to you shortly.</p>}
-              {status === "error" && <p role="alert" style={{ color: "var(--accent-magenta)", fontSize: "0.85rem" }}>Something went wrong — please email me directly at gajaananthn@gmail.com.</p>}
+              {status === "sent" && <p role="status" style={{ color: "var(--accent)", fontSize: "0.85rem" }}>Message sent, check your inbox.</p>}
+              {status === "partial" && <p role="status" style={{ color: "var(--accent)", fontSize: "0.85rem" }}>Message sent. I'll get back to you shortly.</p>}
+              {status === "error" && <p role="alert" style={{ color: "var(--accent-magenta)", fontSize: "0.85rem" }}>Something went wrong. Please email me directly at gajaananthn@gmail.com.</p>}
             </form>
           </GlassPanel>
         </RevealOnScroll>
