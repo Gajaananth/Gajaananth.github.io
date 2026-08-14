@@ -21,16 +21,18 @@ const nodes = [
 ];
 
 export default function LoadingScreen({ onDone }: LoadingScreenProps) {
-  const [stage, setStage] = useState<"mark" | "name" | "out">("mark");
+  const [stage, setStage] = useState<"mark" | "name" | "context" | "out">("mark");
 
   useEffect(() => {
     const t1 = setTimeout(() => setStage("name"), 500);
-    const t2 = setTimeout(() => setStage("out"), 1500);
-    const t3 = setTimeout(onDone, 1850);
+    const t2 = setTimeout(() => setStage("context"), 1600);
+    const t3 = setTimeout(() => setStage("out"), 2800);
+    const t4 = setTimeout(onDone, 3200);
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);
+      clearTimeout(t4);
     };
   }, [onDone]);
 
@@ -72,6 +74,20 @@ export default function LoadingScreen({ onDone }: LoadingScreenProps) {
 
       <div className={`loading-name ${stage !== "mark" ? "loading-name-visible" : ""}`}>
         GAJAANANTH
+      </div>
+
+      <div className={`loading-context ${stage === "context" ? "loading-context-visible" : ""}`}>
+        <div className="loading-context-item">
+          <span className="loading-context-label">LIFE-SAVING PROJECT</span>
+          <h3>Selva NaDhanam</h3>
+          <p>Disaster-resilient emergency communication. In development.</p>
+        </div>
+        <div className="loading-context-divider" />
+        <div className="loading-context-item">
+          <span className="loading-context-label">AGENT DEPLOYED</span>
+          <h3>Karuppu</h3>
+          <p>Finding futuristic marketing strategies across markets.</p>
+        </div>
       </div>
     </div>
   );

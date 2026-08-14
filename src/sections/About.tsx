@@ -21,9 +21,9 @@ export default function About() {
             </p>
             <p>
               My stack spans React, Next.js, Django, Python, FastAPI and Flutter, with
-              PostgreSQL underneath and Figma driving the design. I run this practice as a
-              registered sole proprietorship, Pick My Show, and hold a BSc in Information
-              Technology from the University of Vavuniya.
+              PostgreSQL underneath and Figma driving the design. I work independently with
+              founders and teams building product experiences that are practical, polished, and
+              ready for real-world use.
             </p>
             <div className="about-stats">
               <GlassPanel className="about-stat" tilt={false}>
