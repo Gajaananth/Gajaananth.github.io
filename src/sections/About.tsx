@@ -13,10 +13,10 @@ export default function About() {
             <span className="heading-tag">About</span>
             <h2>Creating products that feel modern and useful.</h2>
             <p>
-              I'm <strong>Nadarasa Gajaananth</strong>, a freelance AI and full stack developer
+              I'm <strong>Nadarasa Gajaananth</strong>, a freelance AI and fullstack developer
               based in Sri Lanka, building web and mobile products for clients across finance,
               hospitality, and education. My work
-              blends practical software engineering with AI-assisted development, using tools
+              blends practical software engineering with AI assisted development, using tools
               like Cursor AI and Claude to move fast without cutting corners.
             </p>
             <p>
