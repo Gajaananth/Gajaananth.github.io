@@ -5,11 +5,9 @@ import GlassPanel from "../ui/GlassPanel";
 import NeuralNetwork from "../components/3d/NeuralNetwork";
 import AmbientCanvas from "../ui/AmbientCanvas";
 import { skillCategories } from "../data/skills";
-import { useIsMobile } from "../hooks/useMediaQuery";
 
 export default function Skills() {
   const [active, setActive] = useState<string | null>(null);
-  const isMobile = useIsMobile();
   return (
     <section id="skills" className="section">
       <AmbientCanvas className="ambient-3d--skills-tr" count={4} spread={2.6} colorA="#8b7bff" colorB="#d66bff" />
