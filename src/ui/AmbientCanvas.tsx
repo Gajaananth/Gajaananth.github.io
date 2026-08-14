@@ -23,7 +23,7 @@ export default function AmbientCanvas({ className = "", count = 6, spread, color
   if (isMobile || reducedMotion) return null;
   return (
     <div className={`ambient-3d ${className}`} aria-hidden="true">
-      <Canvas camera={{ position: [0, 0, 6], fov: 45 }} dpr={[1, 1.5]}>
+      <Canvas camera={{ position: [0, 0, 6], fov: 45 }} dpr={[1, 1]} gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}>
         <Suspense fallback={null}>
           <AmbientField count={count} spread={spread} colorA={colorA} colorB={colorB} />
         </Suspense>

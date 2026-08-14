@@ -360,3 +360,35 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 /* ---------- Reveal on scroll ---------- */
 .reveal-on-scroll { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
 .reveal-visible { opacity: 1; transform: translateY(0); }
+
+/* ---------- Mobile performance optimizations ---------- */
+@media (max-width: 768px) {
+  /* Reduce motion on smaller screens for better performance */
+  * { animation-duration: 0.5s !important; }
+  
+  /* Disable scroll reveal animations on mobile for better performance */
+  .reveal-on-scroll { transition: opacity 0.3s ease, transform 0.3s ease; }
+  
+  /* Simplify button transitions */
+  .primary-button, .secondary-button { transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; }
+  
+  /* Reduce transform effects on interactive elements */
+  .primary-button:hover, .secondary-button:hover { transform: none; }
+  
+  /* Optimize tilt cards for mobile */
+  .tilt-card { perspective: none; }
+  
+  /* Reduce opacity transitions */
+  .ambient-3d { display: none; }
+}
+
+@media (max-width: 480px) {
+  /* Even more aggressive optimizations for very small screens */
+  .reveal-on-scroll { opacity: 1; transform: none; transition: none; }
+  
+  /* Disable transform animations completely */
+  .primary-button:hover, .secondary-button:hover, .footer-social-link:hover { transform: none !important; }
+  
+  /* Simplify all transitions */
+  * { transition-duration: 0.15s !important; }
+}

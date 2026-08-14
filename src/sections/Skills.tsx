@@ -42,7 +42,7 @@ export default function Skills() {
           {!isMobile && (
             <RevealOnScroll delay={120}>
               <GlassPanel className="skills-3d-panel" tilt={false}>
-                <Canvas camera={{ position: [0, 0, 7], fov: 45 }} dpr={[1, 1.5]}>
+                <Canvas camera={{ position: [0, 0, 7], fov: 45 }} dpr={[1, 1]} gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}>
                   <Suspense fallback={null}>
                     <ambientLight intensity={0.7} />
                     <NeuralNetwork activeCategory={active} />

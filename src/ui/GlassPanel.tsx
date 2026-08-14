@@ -1,11 +1,13 @@
 import { useRef, type ReactNode, type MouseEvent } from "react";
 import { useReducedMotion } from "../hooks/useReducedMotion";
+import { useIsMobile } from "../hooks/useMediaQuery";
 interface GlassPanelProps { children: ReactNode; className?: string; tilt?: boolean; }
 export default function GlassPanel({ children, className = "", tilt = true }: GlassPanelProps) {
   const ref = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
+  const isMobile = useIsMobile();
   const handleMove = (e: MouseEvent) => {
-    if (!tilt || reducedMotion || !ref.current) return;
+    if (!tilt || reducedMotion || isMobile || !ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;

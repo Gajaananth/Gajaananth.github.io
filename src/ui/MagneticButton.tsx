@@ -1,5 +1,6 @@
 import { useRef, type ReactNode, type MouseEvent } from "react";
 import { useReducedMotion } from "../hooks/useReducedMotion";
+import { useIsMobile } from "../hooks/useMediaQuery";
 interface MagneticButtonProps {
   href?: string;
   onClick?: () => void;
@@ -11,8 +12,9 @@ interface MagneticButtonProps {
 export default function MagneticButton({ href, onClick, children, variant = "primary", className = "", type = "button" }: MagneticButtonProps) {
   const ref = useRef<HTMLAnchorElement & HTMLButtonElement>(null);
   const reducedMotion = useReducedMotion();
+  const isMobile = useIsMobile();
   const handleMove = (e: MouseEvent) => {
-    if (reducedMotion || !ref.current) return;
+    if (reducedMotion || isMobile || !ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;

@@ -14,7 +14,7 @@ export default function Hero() {
     <section id="hero" className="hero-pin-wrapper">
       {!isMobile && (
         <div className="hero-bg-3d" aria-hidden="true">
-          <Canvas camera={{ position: [0, 0, 9], fov: 45 }} dpr={[1, 1.5]}>
+          <Canvas camera={{ position: [0, 0, 9], fov: 45 }} dpr={[1, 1]} gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}>
             <Suspense fallback={null}>
               <FloatingGeometry count={10} radius={7} speed={reducedMotion ? 0 : 1} />
             </Suspense>
