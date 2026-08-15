@@ -10,20 +10,20 @@ export const experience: ExperienceItem[] = [
     year: "2024 to now",
     title: "Freelance AI and full stack developer",
     description:
-      "Designing and delivering client products, automation systems, and AI supported web applications.",
+      "Building full stack applications, AI powered workflows, automation systems, and digital products for real world business use.",
   },
   {
     id: "amber",
     year: "2023 to 2024",
     title: "Application and AI developer",
     description:
-      "Worked with Amber Business Solutions UK to build intelligent workflows and modern digital platforms.",
+      "Developed web applications, AI assisted workflows, and digital platforms for Amber Business Solutions, a UK based digital solutions company.",
   },
   {
     id: "bit",
     year: "2026",
     title: "BIT (R) at University of Moratuwa",
     description:
-      "Continuing my degree while building practical software products that solve real business needs.",
+      "Pursuing my degree while building and deploying software products for real business problems.",
   },
 ];

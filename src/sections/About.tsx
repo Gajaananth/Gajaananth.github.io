@@ -11,24 +11,17 @@ export default function About() {
         <div className="about-grid">
           <RevealOnScroll className="about-copy">
             <span className="heading-tag">About</span>
-            <h2>Creating products that feel modern and useful.</h2>
+            <h2>I build real software for real business needs.</h2>
             <p>
-              I'm <strong>Nadarasa Gajaananth</strong>, a freelance AI and fullstack developer
-              based in Sri Lanka, building web and mobile products for clients across finance,
-              hospitality, and education. My work
-              blends practical software engineering with AI assisted development, using tools
-              like Cursor AI and Claude to move fast without cutting corners.
+              I'm <strong>Nadarasa Gajaananth</strong>, a freelance AI and full stack developer based in Sri Lanka. I work with founders and teams to build web applications, mobile apps, backend systems, AI powered workflows, and automation for finance, hospitality, education, and enterprise.
             </p>
             <p>
-              My stack spans React, Next.js, Django, Python, FastAPI and Flutter, with
-              PostgreSQL underneath and Figma driving the design. I work independently with
-              founders and teams building product experiences that are practical, polished, and
-              ready for real-world use.
+              My work spans React, Next.js, Django, Python, FastAPI, and Flutter on the frontend and backend. I focus on building products that solve real problems, scale with your business, and can be maintained and extended over time.
             </p>
             <div className="about-stats">
               <GlassPanel className="about-stat" tilt={false}>
                 <strong>6+</strong>
-                <span>Shipped products</span>
+                <span>Products Built</span>
               </GlassPanel>
               <GlassPanel className="about-stat" tilt={false}>
                 <strong>3</strong>

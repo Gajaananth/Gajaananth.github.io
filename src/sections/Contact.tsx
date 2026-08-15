@@ -67,7 +67,7 @@ export default function Contact() {
             <div className="contact-info">
               <span className="heading-tag">Contact</span>
               <h2>Let's build something meaningful.</h2>
-              <p>Have a product in mind, or need an AI-assisted build? I'm available for remote work worldwide.</p>
+              <p>Have an idea, a product to build, or a workflow to automate? I'm available for remote work worldwide.</p>
               <div className="contact-detail">
                 <span>Email</span>
                 <a href="mailto:gajaananthn@gmail.com">gajaananthn@gmail.com</a>

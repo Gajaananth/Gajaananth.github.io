@@ -12,7 +12,7 @@ export default function Skills() {
       <div className="container">
         <RevealOnScroll className="section-header">
           <span className="heading-tag">Skills</span>
-          <h2>An engineering ecosystem, not a checklist.</h2>
+          <h2>The stack behind my work.</h2>
         </RevealOnScroll>
 
         <div className="skills-layout">

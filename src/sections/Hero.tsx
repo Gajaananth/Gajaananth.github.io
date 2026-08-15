@@ -11,7 +11,7 @@ export default function Hero() {
         {/* Text sits in its own column so it never lands on top of the
             portrait — no headline or button overlaps the photo. */}
         <div className="hero-content">
-          <span className="hero-eyebrow">AI Engineer &middot; Software Builder</span>
+          <span className="hero-eyebrow">AI Engineer · Full Stack Developer</span>
           <h1 className="hero-name-wrap">
             <span className="hero-name gradient-text">GAJAANANTH</span>
             {!reducedMotion && (
@@ -21,8 +21,7 @@ export default function Hero() {
               </>
             )}
           </h1>
-          <p className="hero-role">AI Engineer &bull; Software Builder &bull; Problem Solver</p>
-          <p className="hero-sub">Building future-ready digital products.</p>
+          <p className="hero-role">Building AI powered web, mobile, and business software.</p>
           <div className="hero-actions">
             <MagneticButton href="#projects" variant="primary">View Projects</MagneticButton>
             <MagneticButton href="#contact" variant="secondary">Let's Connect</MagneticButton>
