@@ -18,7 +18,12 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         </button>
 
         <div className="project-modal-media">
-          <img src={project.image} alt={`${project.title} preview`} loading="eager" />
+          <img
+            src={project.image}
+            alt={`${project.title} preview`}
+            loading="eager"
+            className={project.id === "karuppu" ? "project-logo-image" : ""}
+          />
         </div>
 
         <div className="project-modal-body">
@@ -96,7 +101,12 @@ export default function Projects() {
             <RevealOnScroll key={project.id} delay={(i % 3) * 90}>
               <GlassPanel className={`project-card ${project.featured ? "project-card-featured" : ""}`}>
                 <div className="project-card-media">
-                  <img src={project.image} alt={`${project.title} preview`} loading="lazy" />
+                  <img
+                    src={project.image}
+                    alt={`${project.title} preview`}
+                    loading="lazy"
+                    className={project.id === "karuppu" ? "project-logo-image" : ""}
+                  />
                 </div>
                 <div className="project-card-body">
                   <div className="project-card-meta">

@@ -86,8 +86,8 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: "mabuddy-v2",
-    title: "MAbuddy v2",
+    id: "karuppu",
+    title: "Karuppu",
     category: "AI Application",
     tagline: "An AI powered workspace for managing tasks and automating repetitive work.",
     description:
