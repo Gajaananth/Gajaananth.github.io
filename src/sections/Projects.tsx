@@ -1,7 +1,6 @@
 import { useState } from "react";
 import RevealOnScroll from "../ui/RevealOnScroll";
 import GlassPanel from "../ui/GlassPanel";
-import AmbientCanvas from "../ui/AmbientCanvas";
 import { projects, type Project } from "../data/projects";
 
 function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
@@ -86,7 +85,6 @@ export default function Projects() {
 
   return (
     <section id="projects" className="section">
-      <AmbientCanvas className="ambient-3d--projects-bl" count={6} spread={3.4} colorA="#d66bff" colorB="#5fd4ff" />
       <div className="container">
         <RevealOnScroll className="section-header">
           <span className="heading-tag">Projects</span>

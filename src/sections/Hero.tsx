@@ -1,27 +1,12 @@
-import { Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
 import { useReducedMotion } from "../hooks/useReducedMotion";
-import { useIsMobile } from "../hooks/useMediaQuery";
-import FloatingGeometry from "../components/3d/FloatingGeometry";
 import MagneticButton from "../ui/MagneticButton";
 import heroPortrait from "../assets/hero/hero-portrait.webp";
 
 export default function Hero() {
   const reducedMotion = useReducedMotion();
-  const isMobile = useIsMobile();
 
   return (
     <section id="hero" className="hero-pin-wrapper">
-      {!isMobile && (
-        <div className="hero-bg-3d" aria-hidden="true">
-          <Canvas camera={{ position: [0, 0, 9], fov: 45 }} dpr={[1, 1]} gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}>
-            <Suspense fallback={null}>
-              <FloatingGeometry count={10} radius={7} speed={reducedMotion ? 0 : 1} />
-            </Suspense>
-          </Canvas>
-        </div>
-      )}
-
       <div className="hero-inner container">
         {/* Text sits in its own column so it never lands on top of the
             portrait — no headline or button overlaps the photo. */}

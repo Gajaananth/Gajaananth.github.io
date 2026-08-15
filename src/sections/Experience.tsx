@@ -1,12 +1,10 @@
 import RevealOnScroll from "../ui/RevealOnScroll";
 import GlassPanel from "../ui/GlassPanel";
-import AmbientCanvas from "../ui/AmbientCanvas";
 import { experience } from "../data/experience";
 
 export default function Experience() {
   return (
     <section id="experience" className="section">
-      <AmbientCanvas className="ambient-3d--experience-tr" count={5} spread={3} colorA="#5fd4ff" colorB="#8b7bff" />
       <div className="container">
         <RevealOnScroll className="section-header">
           <span className="heading-tag">Experience</span>

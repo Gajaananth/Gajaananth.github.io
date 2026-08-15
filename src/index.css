@@ -301,7 +301,17 @@ body.cursor-hover .cursor-ring { width: 50px; height: 50px; margin: -25px 0 0 -2
   background: radial-gradient(ellipse at 50% 20%, #0d1120 0%, var(--bg) 70%);
   display: flex; align-items: center; padding: calc(var(--nav-height) + 24px) 0 64px;
 }
-.hero-bg-3d { position: absolute; inset: 0; z-index: 0; opacity: 0.5; }
+.global-ambient {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  opacity: 0.85;
+  background: radial-gradient(circle at 50% 20%, rgba(95, 212, 255, 0.12), transparent 35%),
+    radial-gradient(circle at 80% 25%, rgba(139, 123, 255, 0.1), transparent 28%),
+    radial-gradient(circle at 30% 80%, rgba(214, 107, 255, 0.08), transparent 32%),
+    var(--bg);
+}
+.global-ambient canvas {
+  display: block; width: 100% !important; height: 100% !important;
+}
 
 /* Text and portrait live in separate columns so copy and buttons never
    sit on top of the photo (face, torso, feet, etc). */
@@ -417,26 +427,6 @@ body.cursor-hover .cursor-ring { width: 50px; height: 50px; margin: -25px 0 0 -2
 @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } .about-stats { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 480px) { .about-stats { grid-template-columns: 1fr; } }
 
-/* ---------- Ambient decorative 3D ---------- */
-.ambient-3d { position: absolute; z-index: 0; pointer-events: none; opacity: 0.55; }
-.ambient-3d canvas { display: block; }
-.ambient-3d--experience-tr { top: 20px; right: -70px; width: 360px; height: 360px; }
-.ambient-3d--projects-bl { bottom: -40px; left: -90px; width: 400px; height: 400px; }
-.ambient-3d--skills-tr { top: -30px; right: -60px; width: 320px; height: 320px; opacity: 0.4; }
-.ambient-3d--contact-br { bottom: -60px; right: -70px; width: 340px; height: 340px; opacity: 0.4; }
-.ambient-3d--footer { top: -160px; left: 50%; transform: translateX(-50%); width: 560px; height: 260px; opacity: 0.3; }
-@media (max-width: 1100px) {
-  .ambient-3d--experience-tr, .ambient-3d--projects-bl, .ambient-3d--contact-br { display: none; }
-}
-@media (max-width: 768px) {
-  /* Keep 3D visible on mobile with smaller sizing */
-  .ambient-3d { opacity: 0.35; }
-  .ambient-3d--experience-tr { display: block; top: 40px; right: -100px; width: 240px; height: 240px; opacity: 0.25; }
-  .ambient-3d--projects-bl { display: block; bottom: -60px; left: -100px; width: 260px; height: 260px; opacity: 0.22; }
-  .ambient-3d--skills-tr { display: block; top: -40px; right: -80px; width: 200px; height: 200px; opacity: 0.2; }
-  .ambient-3d--contact-br { display: block; bottom: -80px; right: -80px; width: 220px; height: 220px; opacity: 0.18; }
-  .ambient-3d--footer { opacity: 0.15; }
-}
 
 /* ---------- Experience ---------- */
 .timeline { position: relative; display: flex; flex-direction: column; gap: 0; }

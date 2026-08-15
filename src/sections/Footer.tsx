@@ -1,5 +1,3 @@
-import AmbientCanvas from "../ui/AmbientCanvas";
-
 const SOCIALS = [
   { id: "github", label: "GitHub", href: "https://github.com/Gajaananth", icon: "github-icon" },
   { id: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/gajaananth/", icon: "linkedin-icon" },
@@ -10,7 +8,6 @@ const SOCIALS = [
 export default function Footer() {
   return (
     <footer className="site-footer">
-      <AmbientCanvas className="ambient-3d--footer" count={5} spread={3.6} colorA="#8b7bff" colorB="#5fd4ff" />
       <div className="footer-socials">
         {SOCIALS.map((s) => (
           <a

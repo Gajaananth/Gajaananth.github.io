@@ -3,6 +3,7 @@ import LoadingScreen from "./ui/LoadingScreen";
 import CustomCursor from "./ui/CustomCursor";
 import ScrollProgress from "./ui/ScrollProgress";
 import Navbar from "./ui/Navbar";
+import GlobalCanvas from "./ui/GlobalCanvas";
 import Hero from "./sections/Hero";
 import About from "./sections/About";
 import Experience from "./sections/Experience";
@@ -18,6 +19,7 @@ export default function App() {
       {loading && <LoadingScreen onDone={() => setLoading(false)} />}
       <CustomCursor />
       <ScrollProgress />
+      <GlobalCanvas />
       <Navbar />
       <main>
         <Hero />

@@ -3,7 +3,6 @@ import emailjs from "@emailjs/browser";
 import GlassPanel from "../ui/GlassPanel";
 import MagneticButton from "../ui/MagneticButton";
 import RevealOnScroll from "../ui/RevealOnScroll";
-import AmbientCanvas from "../ui/AmbientCanvas";
 import heroWorkstation from "../assets/hero/hero-workstation.webp";
 
 // Falls back to the previously working credentials if no .env is provided,
@@ -62,7 +61,6 @@ export default function Contact() {
 
   return (
     <section id="contact" className="section">
-      <AmbientCanvas className="ambient-3d--contact-br" count={4} spread={2.6} colorA="#5fd4ff" colorB="#d66bff" />
       <div className="container">
         <RevealOnScroll>
           <GlassPanel className="contact-panel" tilt={false}>

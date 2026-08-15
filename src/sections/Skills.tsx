@@ -3,14 +3,12 @@ import { Canvas } from "@react-three/fiber";
 import RevealOnScroll from "../ui/RevealOnScroll";
 import GlassPanel from "../ui/GlassPanel";
 import NeuralNetwork from "../components/3d/NeuralNetwork";
-import AmbientCanvas from "../ui/AmbientCanvas";
 import { skillCategories } from "../data/skills";
 
 export default function Skills() {
   const [active, setActive] = useState<string | null>(null);
   return (
     <section id="skills" className="section">
-      <AmbientCanvas className="ambient-3d--skills-tr" count={4} spread={2.6} colorA="#8b7bff" colorB="#d66bff" />
       <div className="container">
         <RevealOnScroll className="section-header">
           <span className="heading-tag">Skills</span>
