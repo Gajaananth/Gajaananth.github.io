@@ -1,14 +1,9 @@
-import { Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
 import { useReducedMotion } from "../hooks/useReducedMotion";
-import { useIsMobile } from "../hooks/useMediaQuery";
 import MagneticButton from "../ui/MagneticButton";
-import HeroRing from "../components/3d/HeroRing";
 import heroPortrait from "../assets/hero/hero-portrait.webp";
 
 export default function Hero() {
   const reducedMotion = useReducedMotion();
-  const isMobile = useIsMobile();
 
   return (
     <section id="hero" className="hero-pin-wrapper">
@@ -35,17 +30,6 @@ export default function Hero() {
         </div>
 
         <div className="hero-visual">
-          <div className="hero-ring-scene" aria-hidden="true">
-            <Canvas
-              camera={{ position: [0, 0, 6], fov: 42 }}
-              dpr={isMobile ? [1, 1.2] : [1, 1.4]}
-              gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
-            >
-              <Suspense fallback={null}>
-                <HeroRing isMobile={isMobile} reducedMotion={reducedMotion} />
-              </Suspense>
-            </Canvas>
-          </div>
           <img
             src={heroPortrait}
             alt="Gajaananth, AI Engineer and Software Builder, sitting in a chair holding a mug"

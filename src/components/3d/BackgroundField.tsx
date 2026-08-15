@@ -39,6 +39,7 @@ function FieldCluster({
 }) {
   const meshRef = useRef<THREE.InstancedMesh>(null);
   const dummy = useRef(new THREE.Object3D());
+  const pointerRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
 
   const particles = useMemo<ParticleData[]>(() => {
     const aspect = typeof window !== "undefined" ? window.innerWidth / Math.max(window.innerHeight, 1) : 1.6;
@@ -57,13 +58,13 @@ function FieldCluster({
       driftX: 0.7 + Math.random() * 1.5,
       driftY: 0.8 + Math.random() * 1.8,
       driftZ: 0.7 + Math.random() * 1.8,
-      speed: 0.42 + Math.random() * 1.3,
+      speed: 0.05 + Math.random() * 0.18,
       baseX: (Math.random() - 0.5) * spreadX * 2,
       baseY: (Math.random() - 0.5) * spreadY * 2,
       baseZ: (Math.random() - 0.5) * 8,
-      spinX: 0.25 + Math.random() * 0.65,
-      spinY: 0.3 + Math.random() * 0.8,
-      spinZ: 0.2 + Math.random() * 0.7,
+      spinX: 0.04 + Math.random() * 0.11,
+      spinY: 0.05 + Math.random() * 0.13,
+      spinZ: 0.035 + Math.random() * 0.115,
     }));
   }, [count]);
 
@@ -83,18 +84,28 @@ function FieldCluster({
     if (!meshRef.current || document.visibilityState === "hidden") return;
 
     const time = state.clock.getElapsedTime();
-    const pointerX = isMobile ? 0 : state.pointer.x * 0.9;
-    const pointerY = isMobile ? 0 : state.pointer.y * 0.8;
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+    // Smooth lerp toward target pointer values with slower response
+    if (!isMobile) {
+      pointerRef.current.targetX = state.pointer.x * 0.9;
+      pointerRef.current.targetY = state.pointer.y * 0.8;
+      pointerRef.current.x = lerp(pointerRef.current.x, pointerRef.current.targetX, 0.08);
+      pointerRef.current.y = lerp(pointerRef.current.y, pointerRef.current.targetY, 0.08);
+    } else {
+      pointerRef.current.x = 0;
+      pointerRef.current.y = 0;
+    }
 
     particles.forEach((particle, index) => {
       const x =
         particle.baseX +
         Math.sin(time * particle.speed + particle.phase) * particle.driftX +
-        pointerX * 1.8;
+        pointerRef.current.x * 0.6;
       const y =
         particle.baseY +
         Math.cos(time * (particle.speed * 1.15) + particle.phase) * particle.driftY +
-        pointerY * 1.5;
+        pointerRef.current.y * 0.5;
       const z =
         particle.baseZ +
         Math.sin(time * 0.8 + particle.phase) * particle.driftZ +
@@ -107,7 +118,7 @@ function FieldCluster({
         time * particle.spinZ + particle.phase,
       );
       dummy.current.scale.setScalar(
-        reducedMotion ? particle.scale * 0.82 : particle.scale * (0.9 + Math.sin(time * 2 + particle.phase) * 0.2),
+        reducedMotion ? particle.scale * 0.82 : particle.scale * (0.9 + Math.sin(time * 0.3 + particle.phase) * 0.2),
       );
       dummy.current.updateMatrix();
       meshRef.current!.setMatrixAt(index, dummy.current.matrix);
@@ -133,13 +144,13 @@ function FieldCluster({
 }
 
 export default function BackgroundField({
-  count = 320,
+  count = 240,
   reducedMotion = false,
   isMobile = false,
 }: BackgroundFieldProps) {
-  const desktopCount = isMobile ? Math.min(count, 150) : count;
-  const solidCount = Math.max(30, Math.floor(desktopCount * 0.68));
-  const wireCount = Math.max(18, desktopCount - solidCount);
+  const desktopCount = isMobile ? Math.min(count, 120) : count;
+  const solidCount = Math.max(40, Math.floor(desktopCount * 0.78));
+  const wireCount = Math.max(12, desktopCount - solidCount);
 
   const icosaSolid = useMemo(() => new THREE.IcosahedronGeometry(0.86, 1), []);
   const octaSolid = useMemo(() => new THREE.OctahedronGeometry(0.8, 0), []);
@@ -147,12 +158,12 @@ export default function BackgroundField({
 
   return (
     <>
-      <FieldCluster geometry={icosaSolid} count={solidCount} reducedMotion={reducedMotion} isMobile={isMobile} wireframe={false} />
-      <FieldCluster geometry={octaSolid} count={Math.max(18, Math.floor(wireCount * 0.6))} reducedMotion={reducedMotion} isMobile={isMobile} wireframe={false} />
-      <FieldCluster geometry={torusSolid} count={Math.max(18, Math.floor(wireCount * 0.4))} reducedMotion={reducedMotion} isMobile={isMobile} wireframe={false} />
-      <FieldCluster geometry={icosaSolid} count={Math.max(16, Math.floor(desktopCount * 0.24))} reducedMotion={reducedMotion} isMobile={isMobile} wireframe />
-      <FieldCluster geometry={octaSolid} count={Math.max(12, Math.floor(desktopCount * 0.14))} reducedMotion={reducedMotion} isMobile={isMobile} wireframe />
-      <FieldCluster geometry={torusSolid} count={Math.max(12, Math.floor(desktopCount * 0.12))} reducedMotion={reducedMotion} isMobile={isMobile} wireframe />
+      <FieldCluster geometry={icosaSolid} count={Math.max(25, Math.floor(solidCount * 0.4))} reducedMotion={reducedMotion} isMobile={isMobile} wireframe={false} />
+      <FieldCluster geometry={octaSolid} count={Math.max(22, Math.floor(solidCount * 0.35))} reducedMotion={reducedMotion} isMobile={isMobile} wireframe={false} />
+      <FieldCluster geometry={torusSolid} count={Math.max(20, Math.floor(solidCount * 0.25))} reducedMotion={reducedMotion} isMobile={isMobile} wireframe={false} />
+      <FieldCluster geometry={icosaSolid} count={Math.max(6, Math.floor(wireCount * 0.5))} reducedMotion={reducedMotion} isMobile={isMobile} wireframe />
+      <FieldCluster geometry={octaSolid} count={Math.max(4, Math.floor(wireCount * 0.3))} reducedMotion={reducedMotion} isMobile={isMobile} wireframe />
+      <FieldCluster geometry={torusSolid} count={Math.max(4, Math.floor(wireCount * 0.2))} reducedMotion={reducedMotion} isMobile={isMobile} wireframe />
     </>
   );
 }
