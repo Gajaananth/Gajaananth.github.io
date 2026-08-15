@@ -456,10 +456,14 @@ body.cursor-hover .cursor-ring { width: 50px; height: 50px; margin: -25px 0 0 -2
   width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.22,1,0.36,1);
 }
 .project-card:hover .project-card-media img { transform: scale(1.06); }
-.project-logo-image {
-  display: block; width: 72%; height: 72%; max-width: 220px; max-height: 180px;
-  object-fit: contain; object-position: center; margin: auto; padding: 10px;
+.project-card-karuppu .project-card-media {
+  display: flex; align-items: center; justify-content: center; background: rgba(12, 14, 22, 0.88); padding: 10px;
 }
+.project-card-karuppu .project-card-media img {
+  display: block; width: 72%; max-width: 200px; height: auto; max-height: 100%;
+  object-fit: contain; object-position: center; margin: 0 auto; padding: 0;
+}
+.project-card-karuppu:hover .project-card-media img { transform: none; }
 .project-card-body { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .project-card-meta {
   display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
@@ -500,7 +504,7 @@ body.cursor-hover .cursor-ring { width: 50px; height: 50px; margin: -25px 0 0 -2
 }
 .project-modal-media img { width: 100%; height: 100%; object-fit: cover; }
 .project-modal-media .project-logo-image {
-  display: block; width: 62%; height: 62%; max-width: 280px; max-height: 220px;
+  display: block; width: 58%; max-width: 260px; height: auto; max-height: 220px;
   object-fit: contain; object-position: center; margin: 0 auto; padding: 22px 0 10px;
 }
 .project-modal-body { padding: 28px 28px 30px; }

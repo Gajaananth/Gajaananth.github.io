@@ -99,7 +99,7 @@ export default function Projects() {
         <div className="projects-grid">
           {projects.map((project, i) => (
             <RevealOnScroll key={project.id} delay={(i % 3) * 90}>
-              <GlassPanel className={`project-card ${project.featured ? "project-card-featured" : ""}`}>
+              <GlassPanel className={`project-card ${project.featured ? "project-card-featured" : ""} ${project.id === "karuppu" ? "project-card-karuppu" : ""}`}>
                 <div className="project-card-media">
                   <img
                     src={project.image}
