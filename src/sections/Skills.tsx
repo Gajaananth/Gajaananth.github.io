@@ -25,9 +25,11 @@ export default function Skills() {
                 onFocus={() => setActive(cat.id)}
                 onMouseLeave={() => setActive(null)}
                 onBlur={() => setActive(null)}
-                style={{ borderColor: active === cat.id ? cat.color : undefined }}
+                style={{
+                  borderColor: active === cat.id ? (cat.id === "frontend" ? "#7ae7ad" : cat.color) : undefined,
+                }}
               >
-                <h4 style={{ color: active === cat.id ? cat.color : undefined }}>{cat.label}</h4>
+                <h4 style={{ color: active === cat.id ? (cat.id === "frontend" ? "#7ae7ad" : cat.color) : undefined }}>{cat.label}</h4>
                 <ul>
                   {cat.items.map((item) => <li key={item}>{item}</li>)}
                 </ul>

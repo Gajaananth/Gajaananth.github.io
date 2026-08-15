@@ -24,13 +24,13 @@ export default function NeuralNetwork({ activeCategory }: NeuralNetworkProps) {
     return pts;
   }, []);
   const lines = useMemo(() => {
-    const segs: [THREE.Vector3, THREE.Vector3][] = [];
+    const segs: { start: THREE.Vector3; end: THREE.Vector3; categoryId: string }[] = [];
     skillCategories.forEach((cat) => {
       const clusterNodes = nodes.filter((n) => n.categoryId === cat.id);
       for (let i = 0; i < clusterNodes.length; i++) {
         const a = clusterNodes[i];
         const b = clusterNodes[(i + 1) % clusterNodes.length];
-        segs.push([a.position, b.position]);
+        segs.push({ start: a.position, end: b.position, categoryId: cat.id });
       }
     });
     return segs;
@@ -42,17 +42,20 @@ export default function NeuralNetwork({ activeCategory }: NeuralNetworkProps) {
   return (
     <group ref={group}>
       {lines.map((seg, i) => {
-        const geometry = new THREE.BufferGeometry().setFromPoints(seg);
-        const material = new THREE.LineBasicMaterial({ color: "#5fd4ff", transparent: true, opacity: 0.15 });
+        const geometry = new THREE.BufferGeometry().setFromPoints([seg.start, seg.end]);
+        const lineColor = seg.categoryId === "frontend" ? "#7ae7ad" : "#5fd4ff";
+        const material = new THREE.LineBasicMaterial({ color: lineColor, transparent: true, opacity: seg.categoryId === "frontend" ? 0.18 : 0.15 });
         return <primitive key={i} object={new THREE.Line(geometry, material)} />;
       })}
       {nodes.map((n, i) => {
         const isActive = activeCategory === n.categoryId;
         const isDimmed = activeCategory !== null && !isActive;
+        const nodeColor = n.categoryId === "frontend" ? "#7ae7ad" : n.color;
+        const nodeOpacity = isDimmed ? 0.15 : n.categoryId === "frontend" ? 1 : 0.9;
         return (
-          <mesh key={i} position={n.position} scale={isActive ? 1.6 : 1}>
+          <mesh key={i} position={n.position} scale={isActive ? 1.8 : n.categoryId === "frontend" ? 1.25 : 1}>
             <sphereGeometry args={[0.07, 12, 12]} />
-            <meshBasicMaterial color={n.color} transparent opacity={isDimmed ? 0.15 : 0.9} />
+            <meshBasicMaterial color={nodeColor} transparent opacity={nodeOpacity} />
           </mesh>
         );
       })}

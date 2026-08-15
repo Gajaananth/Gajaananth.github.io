@@ -10,7 +10,7 @@ export const skillCategories: SkillCategory[] = [
     id: "frontend",
     label: "Frontend",
     icon: "desktop",
-    color: "#7af0ff",
+    color: "#7ae7ad",
     items: ["React and Next.js", "TypeScript", "Tailwind CSS", "Responsive interface design"],
   },
   {
