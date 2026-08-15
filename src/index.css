@@ -298,7 +298,7 @@ body.cursor-hover .cursor-ring { width: 50px; height: 50px; margin: -25px 0 0 -2
 /* ---------- Hero ---------- */
 .hero-pin-wrapper {
   position: relative; min-height: 100vh; overflow: hidden;
-  background: radial-gradient(ellipse at 50% 20%, #0d1120 0%, var(--bg) 70%);
+  background: radial-gradient(ellipse at 50% 20%, rgba(13, 17, 32, 0.72) 0%, rgba(5, 7, 13, 0.12) 60%, rgba(5, 7, 13, 0) 100%);
   display: flex; align-items: center; padding: calc(var(--nav-height) + 24px) 0 64px;
 }
 .global-ambient {
@@ -415,10 +415,12 @@ body.cursor-hover .cursor-ring { width: 50px; height: 50px; margin: -25px 0 0 -2
   .hero-sub { max-width: 340px; }
   .hero-actions { justify-content: center; }
   .hero-visual { height: min(48vh, 420px); order: 2; }
+  .hero-ring-scene { inset: 12% 5% 2% 5%; }
   .hero-scroll-hint { display: none; }
 }
 @media (max-width: 420px) {
   .hero-visual { height: min(40vh, 340px); }
+  .hero-ring-scene { inset: 16% 3% 2% 3%; }
 }
 
 /* ---------- About ---------- */
